@@ -1,3 +1,20 @@
+/**
+ * @fileoverview Movie editing screen with pre-populated form and genre management
+ * 
+ * This screen provides a comprehensive interface for editing existing movies with:
+ * - Pre-populated form fields with current movie data
+ * - Movie information editing (title, description, director, cast, duration)
+ * - Genre selection and removal with visual pill display
+ * - Release date and poster URL editing
+ * - Form validation using Yup and Formik
+ * - Genre selection modal with available genre filtering
+ * - Error handling and user feedback
+ * - Navigation back to movie details on success
+ * 
+ * Integrates with movieService for data fetching and MovieContext for updates.
+ * Uses global genres data for consistent genre management throughout the app.
+ */
+
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
   View,
@@ -24,6 +41,21 @@ import { globalStyles,colors,spacing } from '../../styles/globalStyles';
 
 type EditMovieScreenProps = NativeStackScreenProps<MovieStackParamList, 'EditMovie'>;
 
+/**
+ * Movie editing screen component
+ * 
+ * Features include:
+ * - Pre-populated form with existing movie data
+ * - Comprehensive movie information editing
+ * - Dynamic genre management with visual feedback
+ * - Form validation and error display
+ * - Genre selection modal with filtering
+ * - Loading states during data fetch and submission
+ * - Success/error handling with user feedback
+ * 
+ * @param {EditMovieScreenProps} props - Navigation and route props
+ * @returns {JSX.Element} Rendered edit movie screen
+ */
 const EditMovieScreen: React.FC<EditMovieScreenProps> = ({ route, navigation }) => {
   const { movieId } = route.params;
   const { updateMovie } = useMovieContext();

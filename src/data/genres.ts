@@ -1,9 +1,28 @@
+/**
+ * @fileoverview Movie genre definitions and data
+ * 
+ * This file provides a comprehensive list of movie genres used throughout the app:
+ * - Genre interface definition with ID, value, and label
+ * - Complete list of available genres for movie categorization
+ * - Consistent genre mapping between backend values and display labels
+ * 
+ * Genres are used for movie filtering, categorization, and form validation.
+ */
+
 export interface Genre {
   id: number;
   value: string;
   label: string;
 }
 
+/**
+ * Complete list of available movie genres
+ * 
+ * Each genre includes:
+ * - id: Unique numeric identifier
+ * - value: Backend API value (uppercase, underscore-separated)
+ * - label: Human-readable display name
+ */
 export const ALL_GENRES: Genre[] = [
   { id: 1, value: 'ACTION', label: 'Action' },
   { id: 2, value: 'COMEDY', label: 'Comedy' },

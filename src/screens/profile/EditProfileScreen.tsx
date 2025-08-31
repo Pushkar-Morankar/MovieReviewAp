@@ -1,3 +1,19 @@
+/**
+ * @fileoverview User profile editing screen with form validation
+ * 
+ * This screen provides an interface for users to edit their profile information:
+ * - Pre-populated form fields with current user data
+ * - First name and last name editing capabilities
+ * - Form validation using Yup and Formik
+ * - FormData submission for backend compatibility
+ * - Error handling and user feedback
+ * - Navigation back to profile screen on success
+ * - Loading states during profile updates
+ * 
+ * Integrates with AuthContext for user data and profile updates.
+ * Uses FormData for consistent backend API communication.
+ */
+
 import React, { useState } from 'react';
 import { View, ScrollView, Alert, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
@@ -11,6 +27,12 @@ import { ProfileStackParamList } from '../../navigation/types';
 
 type EditProfileProps = NativeStackScreenProps<ProfileStackParamList, 'EditProfile'>;
 
+/**
+ * Yup validation schema for profile editing form
+ * 
+ * Ensures first and last names are required fields
+ * Username validation is commented out as it's typically not editable
+ */
 const EditProfileSchema = Yup.object().shape({
   first_name: Yup.string().required('First name is required'),
   last_name: Yup.string().required('Last name is required'),
@@ -18,6 +40,21 @@ const EditProfileSchema = Yup.object().shape({
   // username: Yup.string().min(3, 'Username is too short').required('Username is required'),
 });
 
+/**
+ * Profile editing screen component
+ * 
+ * Features include:
+ * - Pre-populated form with current user data
+ * - Profile information editing (first name, last name)
+ * - Form validation with error display
+ * - FormData submission for backend compatibility
+ * - Loading states during updates
+ * - Success/error handling with user feedback
+ * - Navigation back to profile on completion
+ * 
+ * @param {EditProfileProps} props - Navigation props
+ * @returns {JSX.Element|null} Rendered edit profile screen or null if no user
+ */
 const EditProfileScreen: React.FC<EditProfileProps> = ({ navigation }) => {
   const { user, updateProfile } = useAuth();
   const [isLoading, setIsLoading] = useState(false);

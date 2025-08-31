@@ -1,3 +1,17 @@
+/**
+ * @fileoverview Main application entry point and navigation structure
+ * 
+ * This file serves as the root component for the Movie Review App:
+ * - Sets up React Navigation container
+ * - Provides authentication and movie context providers
+ * - Handles authentication state-based navigation routing
+ * - Manages loading states during authentication checks
+ * - Configures status bar appearance
+ * 
+ * The app automatically switches between authentication screens
+ * and main app screens based on user authentication status.
+ */
+
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {StatusBar} from 'react-native';
@@ -9,7 +23,12 @@ import Loading from './src/components/common/Loading';
 
 /**
  * Root component that decides which navigator to show based on auth state.
- * @returns The main application component.
+ * 
+ * Renders either the main app navigator (for authenticated users) or
+ * the authentication navigator (for unauthenticated users).
+ * Shows loading spinner while checking authentication state.
+ * 
+ * @returns {JSX.Element} The main application component
  */
 const AppContent: React.FC = () => {
   const {user, isLoading} = useAuth();
@@ -24,7 +43,15 @@ const AppContent: React.FC = () => {
 
 /**
  * Main App component that wraps the application with necessary providers.
- * @returns The root of the application.
+ * 
+ * Sets up the complete application structure with:
+ * - Navigation container for routing
+ * - Status bar configuration
+ * - Authentication context provider
+ * - Movie context provider (nested for auth access)
+ * - Main app content component
+ * 
+ * @returns {JSX.Element} The root of the application
  */
 const App: React.FC = () => {
   return (

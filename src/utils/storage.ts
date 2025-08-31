@@ -1,6 +1,19 @@
+/**
+ * @fileoverview Secure token storage utilities for authentication
+ * 
+ * This file provides functions for managing JWT tokens in persistent storage:
+ * - Storing authentication tokens securely
+ * - Retrieving stored tokens
+ * - Clearing tokens during logout
+ * 
+ * Uses AsyncStorage for cross-platform persistent storage with proper
+ * error handling and JSON serialization/deserialization.
+ */
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Tokens } from '../types';
 
+/** Storage key for user authentication tokens */
 const TOKEN_KEY = 'user_tokens';
 
 /**

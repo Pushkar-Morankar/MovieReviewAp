@@ -1,3 +1,16 @@
+/**
+ * @fileoverview Modal component for rating and reviewing movies
+ * 
+ * This component provides a modal interface for movie reviews with:
+ * - Star rating selection (1-5 stars)
+ * - Optional comment input field
+ * - Form validation using Yup and Formik
+ * - Loading state handling
+ * - Support for both new reviews and review updates
+ * 
+ * Used throughout the app for collecting user movie ratings and comments.
+ */
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
@@ -8,6 +21,16 @@ import Button from '../common/Button';
 import StarRating from '../common/StarRating';
 import { globalStyles,colors,spacing } from '../../styles/globalStyles';
 
+/**
+ * Props interface for the RatingModal component
+ * 
+ * @interface RatingModalProps
+ * @property {boolean} isVisible - Controls modal visibility
+ * @property {() => void} onClose - Function to call when modal is closed
+ * @property {(values: {rating: number, comment: string}) => void} onSubmit - Function to call with form data
+ * @property {boolean} isLoading - Whether the form submission is in progress
+ * @property {{rating: number, comment: string}} [initialValues] - Initial form values for editing existing reviews
+ */
 interface RatingModalProps {
   isVisible: boolean;
   onClose: () => void;
@@ -16,6 +39,12 @@ interface RatingModalProps {
   initialValues?: { rating: number; comment: string };
 }
 
+/**
+ * Yup validation schema for rating form
+ * 
+ * Ensures rating is required and between 1-5 stars,
+ * while comment is optional
+ */
 const RatingSchema = Yup.object().shape({
   rating: Yup.number()
     .required('Rating is required')
@@ -24,6 +53,22 @@ const RatingSchema = Yup.object().shape({
   comment: Yup.string(),
 });
 
+/**
+ * Modal component for rating and reviewing movies
+ * 
+ * Features include:
+ * - Star rating selection with visual feedback
+ * - Optional comment input with multiline support
+ * - Form validation with error display
+ * - Loading state during submission
+ * - Support for both new reviews and updates
+ * - Responsive modal design with backdrop dismissal
+ * 
+ * Uses Formik for form state management and Yup for validation.
+ * 
+ * @param {RatingModalProps} props - Component properties
+ * @returns {JSX.Element} Rendered rating modal component
+ */
 const RatingModal: React.FC<RatingModalProps> = ({
   isVisible,
   onClose,

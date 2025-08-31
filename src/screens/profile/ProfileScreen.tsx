@@ -1,3 +1,18 @@
+/**
+ * @fileoverview User profile display and management screen
+ * 
+ * This screen provides a comprehensive user profile interface with:
+ * - User profile information display (name, username, email)
+ * - Profile picture with fallback avatar icon
+ * - Navigation to profile editing screen
+ * - Logout functionality with confirmation dialog
+ * - User authentication state validation
+ * - Consistent styling using global theme colors
+ * 
+ * Integrates with AuthContext for user data and authentication actions.
+ * Provides navigation within the profile stack for editing capabilities.
+ */
+
 import React from 'react';
 import { View, Text, StyleSheet, Image, Alert } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
@@ -10,6 +25,19 @@ import { ProfileStackParamList } from '../../navigation/types';
 // The navigation prop is now from the ProfileStack, allowing navigation to EditProfile
 type ProfileScreenProps = NativeStackScreenProps<ProfileStackParamList, 'Profile'>;
 
+/**
+ * User profile screen component
+ * 
+ * Features include:
+ * - Profile information display with avatar
+ * - Navigation to profile editing
+ * - Secure logout with confirmation
+ * - Fallback handling for missing user data
+ * - Consistent UI using global styles
+ * 
+ * @param {ProfileScreenProps} props - Navigation props
+ * @returns {JSX.Element} Rendered profile screen
+ */
 const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
   const { user, logout } = useAuth();
 

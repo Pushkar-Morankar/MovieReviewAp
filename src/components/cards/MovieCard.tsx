@@ -1,17 +1,49 @@
+/**
+ * @fileoverview Movie card component for displaying movie information in lists
+ * 
+ * This component provides a consistent card interface for movie listings with:
+ * - Movie poster image with placeholder fallback
+ * - Movie title, genres, and release date
+ * - Touch interaction for navigation to movie details
+ * - Consistent styling using global theme colors
+ * - Shadow effects and rounded corners for modern UI
+ * 
+ * Used in movie lists and search results throughout the app.
+ */
+
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import TouchableScale from 'react-native-touchable-scale';
 import { Movie } from '../../types';
 import { globalStyles,colors,spacing } from '../../styles/globalStyles';
 
+/**
+ * Props interface for the MovieCard component
+ * 
+ * @interface MovieCardProps
+ * @property {Movie} movie - Movie object containing all movie information
+ * @property {() => void} onPress - Function to call when card is pressed
+ */
 interface MovieCardProps {
   movie: Movie;
   onPress: () => void;
 }
 
 /**
- * A card component to display movie information in a list.
- * It is wrapped in a touchable component to handle navigation.
+ * Movie card component for displaying movie information in lists
+ * 
+ * Features include:
+ * - Movie poster display with placeholder fallback
+ * - Movie title with line clamping for consistent layout
+ * - Genre display as comma-separated list
+ * - Release date information
+ * - Touch interaction with scale animation
+ * - Consistent styling using global theme colors
+ * 
+ * Wrapped in a touchable component to handle navigation to movie details.
+ * 
+ * @param {MovieCardProps} props - Component properties
+ * @returns {JSX.Element} Rendered movie card component
  */
 const MovieCard: React.FC<MovieCardProps> = ({ movie, onPress }) => {
   return (

@@ -1,3 +1,19 @@
+/**
+ * @fileoverview User registration screen for new account creation
+ * 
+ * This screen provides the registration interface for new users with:
+ * - Complete user information form (username, email, names, password)
+ * - Form validation using Yup and Formik
+ * - Password confirmation validation
+ * - Authentication state management via AuthContext
+ * - Comprehensive error handling and user feedback
+ * - Navigation to login screen
+ * - Loading states during registration
+ * - Safe area handling and scrollable content
+ * 
+ * Uses global styles and common components for consistent UI.
+ */
+
 // src/screens/auth/RegisterScreen.tsx
 
 import React, { useState } from 'react';

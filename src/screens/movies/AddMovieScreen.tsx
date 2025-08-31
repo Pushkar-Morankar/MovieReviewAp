@@ -1,3 +1,19 @@
+/**
+ * @fileoverview Movie creation screen with comprehensive form and genre selection
+ * 
+ * This screen provides a complete interface for adding new movies with:
+ * - Movie information form (title, description, director, cast, duration)
+ * - Genre selection with visual pill display and removal
+ * - Release date and poster URL input
+ * - Form validation using Yup and Formik
+ * - Genre selection modal with available genre filtering
+ * - Error handling and user feedback
+ * - Navigation back to movie list on success
+ * 
+ * Integrates with movieService for API calls and uses global genres data
+ * for consistent genre management throughout the app.
+ */
+
 import React, { useState } from 'react';
 import {
   View, ScrollView, Alert, Text, StyleSheet, TouchableOpacity, FlatList,
@@ -13,6 +29,20 @@ import * as movieService from '../../service/movieService';
 import { ALL_GENRES } from '../../data/genres';
 import { globalStyles,colors,spacing } from '../../styles/globalStyles';
 
+/**
+ * Movie creation screen component
+ * 
+ * Features include:
+ * - Comprehensive movie information form
+ * - Dynamic genre selection with visual feedback
+ * - Form validation and error display
+ * - Genre selection modal with filtering
+ * - Loading states during submission
+ * - Success/error handling with user feedback
+ * 
+ * @param {AddMovieScreenProps} props - Navigation props
+ * @returns {JSX.Element} Rendered add movie screen
+ */
 const AddMovieScreen: React.FC<AddMovieScreenProps> = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);

@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Main movie listing screen with infinite scroll functionality
+ * 
+ * This screen displays a paginated list of all movies with:
+ * - Movie cards showing poster, title, genres, and release date
+ * - Infinite scroll for loading additional movies
+ * - Loading states for initial load and pagination
+ * - Error handling with retry functionality
+ * - Navigation to movie details and add movie screens
+ * - Header button for adding new movies
+ * 
+ * Uses MovieContext for state management and MovieCard components
+ * for consistent movie display throughout the app.
+ */
+
 import React, { useCallback, useLayoutEffect } from 'react';
 import {
   View,
@@ -15,6 +30,13 @@ import Loading from '../../components/common/Loading';
 import { globalStyles,colors,spacing } from '../../styles/globalStyles';
 
 
+/**
+ * Footer component for the movie list showing loading indicator during pagination
+ * 
+ * @param {Object} props - Component properties
+ * @param {boolean} props.isFetchingMore - Whether more movies are being fetched
+ * @returns {JSX.Element|null} Loading indicator or null
+ */
 const ListFooterComponent: React.FC<{ isFetchingMore: boolean }> = ({ isFetchingMore }) => {
   // If we are not fetching more data, we must return null to render nothing.
   if (!isFetchingMore) {

@@ -1,3 +1,18 @@
+/**
+ * @fileoverview Detailed movie information and review management screen
+ * 
+ * This screen displays comprehensive movie details and provides:
+ * - Full movie information (poster, title, description, cast, director)
+ * - User review submission and editing capabilities
+ * - Review display for all users with owner-specific actions
+ * - Movie editing and deletion for movie owners
+ * - Dynamic header buttons based on user permissions
+ * - Rating modal integration for review management
+ * 
+ * Integrates with MovieContext for data management and AuthContext
+ * for user permission checking and review ownership.
+ */
+
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import {
   View,
@@ -18,6 +33,20 @@ import RatingModal from '../../components/modals/RatingModal';
 import { globalStyles,colors,spacing } from '../../styles/globalStyles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+/**
+ * Movie details screen component
+ * 
+ * Features include:
+ * - Complete movie information display
+ * - User review management (add, edit, delete)
+ * - Owner-specific movie actions (edit, delete)
+ * - Dynamic header configuration
+ * - Review listing with user permissions
+ * - Loading states and error handling
+ * 
+ * @param {MovieDetailsScreenProps} props - Navigation and route props
+ * @returns {JSX.Element} Rendered movie details screen
+ */
 const MovieDetailsScreen: React.FC<MovieDetailsScreenProps> = ({ route, navigation }) => {
   const { movieId } = route.params;
   const { user } = useAuth();

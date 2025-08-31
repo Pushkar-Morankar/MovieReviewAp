@@ -1,3 +1,15 @@
+/**
+ * @fileoverview Main application navigation structure
+ * 
+ * This file defines the primary navigation hierarchy for the Movie Review App:
+ * - Drawer navigation as the root navigator
+ * - Movie stack for movie-related screens
+ * - Profile stack for user profile management
+ * 
+ * Implements a drawer-based navigation pattern with nested stack navigators
+ * for organized screen grouping and navigation flow.
+ */
+
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -18,6 +30,12 @@ const Drawer = createDrawerNavigator<AppDrawerParamList>();
 const MovieStack = createNativeStackNavigator<MovieStackParamList>();
 const ProfileStack = createNativeStackNavigator<ProfileStackParamList>();
 
+/**
+ * Creates a drawer toggle button component
+ * 
+ * @param {NavigationProp<any>} navigation - Navigation object for drawer control
+ * @returns {JSX.Element} Touchable button with menu icon
+ */
 const createDrawerButton = (navigation: NavigationProp<any>) => (
   <TouchableOpacity
     onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
@@ -27,6 +45,17 @@ const createDrawerButton = (navigation: NavigationProp<any>) => (
   </TouchableOpacity>
 );
 
+/**
+ * Movie stack navigator component
+ * 
+ * Manages navigation between movie-related screens:
+ * - Movie list (main screen with drawer button)
+ * - Movie details
+ * - Add new movie
+ * - Edit existing movie
+ * 
+ * @returns {JSX.Element} Movie stack navigator
+ */
 const MovieStackNavigator: React.FC = () => {
   return (
     <MovieStack.Navigator>
@@ -45,6 +74,15 @@ const MovieStackNavigator: React.FC = () => {
   );
 };
 
+/**
+ * Profile stack navigator component
+ * 
+ * Manages navigation between profile-related screens:
+ * - Profile view (main screen with drawer button)
+ * - Profile editing
+ * 
+ * @returns {JSX.Element} Profile stack navigator
+ */
 const ProfileStackNavigator: React.FC = () => {
   return (
     <ProfileStack.Navigator>
@@ -65,6 +103,14 @@ const ProfileStackNavigator: React.FC = () => {
   );
 };
 
+/**
+ * Main application navigator component
+ * 
+ * Root navigation component that sets up the drawer navigation structure
+ * with nested stack navigators for different app sections.
+ * 
+ * @returns {JSX.Element} Main app navigator with drawer and stack structure
+ */
 const AppNavigator: React.FC = () => {
   return (
     <Drawer.Navigator screenOptions={{ headerShown: false }}>

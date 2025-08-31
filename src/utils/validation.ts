@@ -1,3 +1,15 @@
+/**
+ * @fileoverview Form validation schemas and type definitions
+ * 
+ * This file provides Yup validation schemas for form validation across the app:
+ * - Login form validation (email, password)
+ * - Registration form validation (username, email, names, password)
+ * - Movie form validation (title, description, genre, dates, etc.)
+ * 
+ * Uses Yup for schema validation with TypeScript type inference for type safety.
+ * All schemas include proper error messages and validation rules.
+ */
+
 import * as Yup from 'yup';
 
 /**

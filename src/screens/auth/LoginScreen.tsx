@@ -1,3 +1,17 @@
+/**
+ * @fileoverview User authentication login screen
+ * 
+ * This screen provides the login interface for existing users with:
+ * - Email and password input fields
+ * - Form validation using Yup and Formik
+ * - Authentication state management via AuthContext
+ * - Error handling and user feedback
+ * - Navigation to registration screen
+ * - Loading states during authentication
+ * 
+ * Uses global styles and common components for consistent UI.
+ */
+
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { Formik } from 'formik';
